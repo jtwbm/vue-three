@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script>
-import * as THREE from 'three'
+import { AxesHelper } from 'three'
 
 export default {
   props: {
@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     init(config) {
-      return new THREE.AxesHelper(config.size);
+      return new AxesHelper(config.size);
     },
   },
 }
