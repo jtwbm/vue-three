@@ -6,32 +6,32 @@
 </template>
 
 <script>
-import ThreeComponent from '@/components/Three.vue';
-import Axes from '@/components/Axes.vue';
-import Torus from '@/components/Torus.vue';
+import ThreeComponent from '@/components/Three.vue'
+import Axes from '@/components/Axes.vue'
+import Torus from '@/components/Torus.vue'
 
 export default {
   name: 'App',
   components: {
     ThreeComponent,
     Axes,
-    Torus,
+    Torus
   },
-  data() {
+  data () {
     return {
       scene: {
-        background: 0x333333,
+        background: 0x333333
       },
       camera: {
         fov: 90,
         position: {
           x: 1,
           y: 1,
-          z: 7,
-        },
-      },
-    };
-  },
+          z: 7
+        }
+      }
+    }
+  }
 }
 </script>
 <style lang="scss">

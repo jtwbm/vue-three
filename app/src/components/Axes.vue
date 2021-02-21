@@ -6,12 +6,12 @@ import { AxesHelper } from 'three'
 
 export default {
   props: {
-    size: Number,
+    size: Number
   },
   methods: {
-    init(config) {
-      return new AxesHelper(config.size);
-    },
-  },
+    init (config) {
+      return new AxesHelper(config.size)
+    }
+  }
 }
 </script>
