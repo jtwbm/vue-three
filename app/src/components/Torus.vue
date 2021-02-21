@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script>
-import * as THREE from 'three'
+import { TorusGeometry, MeshBasicMaterial, Mesh } from 'three'
 
 export default {
   props: {
@@ -12,12 +12,12 @@ export default {
   },
   methods: {
     init(config) {
-      const geometry = new THREE.TorusGeometry(1,.4,10,20,2 * Math.PI);
-      const material = new THREE.MeshBasicMaterial({
+      const geometry = new TorusGeometry(1,.4,10,20,2 * Math.PI);
+      const material = new MeshBasicMaterial({
         color: config.color,
         wireframe: config.wireframe,
       });
-      const torus = new THREE.Mesh(geometry, material);
+      const torus = new Mesh(geometry, material);
       torus.name = config.name;
       return torus;
     },
