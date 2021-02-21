@@ -13,7 +13,8 @@ export default {
     heightSegments: Number,
     depthSegments: Number,
     color: Number,
-    name: String
+    name: String,
+    wireframe: Boolean
   },
   methods: {
     init ({
@@ -24,7 +25,8 @@ export default {
       heightSegments,
       depthSegments,
       color,
-      name
+      name,
+      wireframe
     }) {
       const geometry = new BoxGeometry(
         width,
@@ -35,7 +37,7 @@ export default {
         depthSegments,
         color
       )
-      const material = new MeshBasicMaterial({ color })
+      const material = new MeshBasicMaterial({ color, wireframe })
       const box = new Mesh(geometry, material)
       box.name = name
       return box

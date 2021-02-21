@@ -75,10 +75,10 @@ export default {
       this.renderer.render(this._scene, this._camera)
 
       // *** добавить callback
-      if (this.items.circle) {
-        this.items.circle.rotation.y -= 0.01
-        this.items.circle.rotation.z += 0.01
-        this.items.circle.rotation.x += 0.01
+      if (this.items.test) {
+        this.items.test.rotation.y -= 0.01
+        this.items.test.rotation.z += 0.01
+        this.items.test.rotation.x += 0.01
       }
 
       requestAnimationFrame(this.loop)

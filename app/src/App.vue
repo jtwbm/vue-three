@@ -1,21 +1,21 @@
 <template>
   <ThreeComponent :scene="scene" :camera="camera" id="scene">
     <Axes name="axes" :size="15" />
-    <Circle v-bind="circleConfig" />
+    <Dodecahedron v-bind="dodecahedronConfig" />
   </ThreeComponent>
 </template>
 
 <script>
 import ThreeComponent from '@/components/Three.vue'
 import Axes from '@/components/Axes.vue'
-import Circle from '@/components/Circle.vue'
+import Dodecahedron from '@/components/Dodecahedron.vue'
 
 export default {
   name: 'App',
   components: {
     ThreeComponent,
     Axes,
-    Circle
+    Dodecahedron
   },
   data () {
     return {
@@ -59,6 +59,38 @@ export default {
         thetaStart: 0,
         thetaLength: 2 * Math.PI,
         wireframe: true
+      },
+      coneConfig: {
+        name: 'test',
+        color: 0x345346,
+        wireframe: true,
+        radius: 1,
+        height: 2,
+        radialSegments: 10,
+        heightSegments: 5,
+        openEnded: true,
+        thetaStart: 0,
+        thetaLength: 2 * Math.PI
+      },
+      cylinderConfig: {
+        name: 'test',
+        color: 0xff0000,
+        wireframe: true,
+        radiusTop: 1,
+        radiusBottom: 2,
+        height: 5,
+        radialSegments: 32,
+        heightSegments: 10,
+        openEnded: true,
+        thetaStart: 0,
+        thetaLength: 2 * Math.PI
+      },
+      dodecahedronConfig: {
+        name: 'test',
+        color: 0xffd00e,
+        wireframe: true,
+        radius: 2,
+        detail: 1
       }
     }
   },
