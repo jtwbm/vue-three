@@ -8,17 +8,32 @@ export default {
   props: {
     name: String,
     color: Number,
-    wireframe: Boolean
+    wireframe: Boolean,
+    radius: Number,
+    tube: Number,
+    radialSegments: Number,
+    tubularSegments: Number,
+    arc: Number
   },
   methods: {
-    init (config) {
-      const geometry = new TorusGeometry(1, 0.4, 10, 20, 2 * Math.PI)
+    init ({
+      color,
+      wireframe,
+      radius,
+      tube,
+      radialSegments,
+      tubularSegments,
+      arc,
+      name
+    }) {
+      const geometry = new TorusGeometry(radius, tube, radialSegments, tubularSegments, arc)
+
       const material = new MeshBasicMaterial({
-        color: config.color,
-        wireframe: config.wireframe
+        color,
+        wireframe
       })
       const torus = new Mesh(geometry, material)
-      torus.name = config.name
+      torus.name = name
       return torus
     }
   }

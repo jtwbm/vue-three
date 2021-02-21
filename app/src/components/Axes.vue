@@ -9,8 +9,10 @@ export default {
     size: Number
   },
   methods: {
-    init (config) {
-      return new AxesHelper(config.size)
+    init ({ size, name }) {
+      const axes = new AxesHelper(size)
+      axes.name = name
+      return axes
     }
   }
 }

@@ -64,24 +64,28 @@ export default {
       this.createCamera()
 
       this.$slots.default().forEach((slot) => {
-        this.item = slot.type.methods.init(slot.props)
-        this._scene.add(this.item)
+        // *** добавить свойства по умолчанию
+        this.items[slot.props.name] = slot.type.methods.init(slot.props)
+        this._scene.add(this.items[slot.props.name])
       })
 
       this.createRenderer()
     },
     loop () {
       this.renderer.render(this._scene, this._camera)
-      if (this.item) {
-        this.item.rotation.y -= 0.01
-        this.item.rotation.z += 0.01
-        this.item.rotation.x += 0.01
+
+      // *** добавить callback
+      if (this.items.circle) {
+        this.items.circle.rotation.y -= 0.01
+        this.items.circle.rotation.z += 0.01
+        this.items.circle.rotation.x += 0.01
       }
 
       requestAnimationFrame(this.loop)
     }
   },
   mounted () {
+    this.items = {}
     this.init()
     this.loop()
   }

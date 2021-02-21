@@ -1,21 +1,21 @@
 <template>
   <ThreeComponent :scene="scene" :camera="camera" id="scene">
-    <Axes :size="15" />
-    <Torus name="donut" :wireframe="true" :color="0xff0000" />
+    <Axes name="axes" :size="15" />
+    <Circle v-bind="circleConfig" />
   </ThreeComponent>
 </template>
 
 <script>
 import ThreeComponent from '@/components/Three.vue'
 import Axes from '@/components/Axes.vue'
-import Torus from '@/components/Torus.vue'
+import Circle from '@/components/Circle.vue'
 
 export default {
   name: 'App',
   components: {
     ThreeComponent,
     Axes,
-    Torus
+    Circle
   },
   data () {
     return {
@@ -29,7 +29,42 @@ export default {
           y: 1,
           z: 7
         }
+      },
+      torusConfig: {
+        name: 'donut',
+        wireframe: true,
+        color: 0xff0000,
+        radius: 1,
+        tube: 0.4,
+        radialSegments: 10,
+        tubularSegments: 20,
+        arc: 2 * Math.PI
+      },
+      boxConfig: {
+        name: 'box',
+        color: 0x666666,
+        width: 1,
+        height: 1,
+        depth: 1,
+        widthSegments: 5,
+        heightSegments: 5,
+        depthSegments: 5,
+        wireframe: true
+      },
+      circleConfig: {
+        name: 'circle',
+        color: 0xffff00,
+        radius: 5,
+        segments: 45,
+        thetaStart: 0,
+        thetaLength: 2 * Math.PI,
+        wireframe: true
       }
+    }
+  },
+  methods: {
+    boxCallback (data) {
+      console.log(data)
     }
   }
 }
