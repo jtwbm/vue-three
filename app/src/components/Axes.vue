@@ -6,14 +6,27 @@ import { AxesHelper } from 'three'
 
 export default {
   props: {
-    size: Number
+    size: {
+      type: Number,
+      default: 5
+    },
+    name: {
+      type: String,
+      required: true
+    }
   },
   methods: {
-    init ({ size, name }) {
-      const axes = new AxesHelper(size)
-      axes.name = name
-      return axes
+    init () {
+      const axes = new AxesHelper(this.size)
+      axes.name = this.name
+      setTimeout(() => {
+        this.$parent.addGeometryToScene(axes)
+      }, 100)
+      this.$emit('init')
     }
+  },
+  mounted () {
+    this.init()
   }
 }
 </script>

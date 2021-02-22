@@ -74,13 +74,6 @@ export default {
     },
     loop () {
       this.renderer.render(this.threeScene, this._camera)
-
-      // *** добавить callback
-      // if (this.items.test) {
-      //   this.items.test.rotation.y -= 0.01
-      //   this.items.test.rotation.z += 0.01
-      //   this.items.test.rotation.x += 0.01
-      // }
       requestAnimationFrame(this.loop)
       this.$emit('update')
     }

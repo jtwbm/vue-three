@@ -2,45 +2,79 @@
   <div></div>
 </template>
 <script>
-import { BoxGeometry, MeshBasicMaterial, Mesh } from 'three'
+import { BoxGeometry } from 'three'
+import mixins from '@/mixins/index.js'
 
 export default {
   props: {
-    width: Number,
-    height: Number,
-    depth: Number,
-    widthSegments: Number,
-    heightSegments: Number,
-    depthSegments: Number,
-    color: Number,
-    name: String,
-    wireframe: Boolean
+    color: {
+      type: Number,
+      default: 0xcccccc
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    wireframe: {
+      type: Boolean,
+      default: false
+    },
+    width: {
+      type: Number,
+      default: 1
+    },
+    height: {
+      type: Number,
+      default: 1
+    },
+    depth: {
+      type: Number,
+      default: 1
+    },
+    widthSegments: {
+      type: Number,
+      default: 1
+    },
+    heightSegments: {
+      type: Number,
+      default: 1
+    },
+    depthSegments: {
+      type: Number,
+      default: 1
+    },
+    position: {
+      type: Object,
+      default: function () {
+        return {
+          x: 0,
+          y: 0,
+          z: 0
+        }
+      }
+    },
+    rotation: {
+      type: Object,
+      default: function () {
+        return {
+          x: 0,
+          y: 0,
+          z: 0
+        }
+      }
+    }
   },
+  mixins: [mixins],
   methods: {
-    init ({
-      width,
-      height,
-      depth,
-      widthSegments,
-      heightSegments,
-      depthSegments,
-      color,
-      name,
-      wireframe
-    }) {
-      const geometry = new BoxGeometry(
-        width,
-        height,
-        depth,
-        widthSegments,
-        heightSegments,
-        depthSegments,
-        color
+    createGeometry () {
+      return new BoxGeometry(
+        this.width,
+        this.height,
+        this.depth,
+        this.widthSegments,
+        this.heightSegments,
+        this.depthSegments
       )
-      const material = new MeshBasicMaterial({ color, wireframe })
-      const box = new Mesh(geometry, material)
-      box.name = name
-      return box
     }
   }
 }

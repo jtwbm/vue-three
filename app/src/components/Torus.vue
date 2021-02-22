@@ -2,39 +2,74 @@
   <div></div>
 </template>
 <script>
-import { TorusGeometry, MeshBasicMaterial, Mesh } from 'three'
+import { TorusGeometry } from 'three'
+import mixins from '@/mixins/index.js'
 
 export default {
   props: {
-    name: String,
-    color: Number,
-    wireframe: Boolean,
-    radius: Number,
-    tube: Number,
-    radialSegments: Number,
-    tubularSegments: Number,
-    arc: Number
+    color: {
+      type: Number,
+      default: 0xcccccc
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    wireframe: {
+      type: Boolean,
+      default: false
+    },
+    radius: {
+      type: Number,
+      default: 2
+    },
+    tube: {
+      type: Number,
+      default: 1
+    },
+    radialSegments: {
+      type: Number,
+      default: 15
+    },
+    tubularSegments: {
+      type: Number,
+      default: 20
+    },
+    arc: {
+      type: Number,
+      default: 2 * Math.PI
+    },
+    position: {
+      type: Object,
+      default: function () {
+        return {
+          x: 0,
+          y: 0,
+          z: 0
+        }
+      }
+    },
+    rotation: {
+      type: Object,
+      default: function () {
+        return {
+          x: 0,
+          y: 0,
+          z: 0
+        }
+      }
+    }
   },
+  mixins: [mixins],
   methods: {
-    init ({
-      color,
-      wireframe,
-      radius,
-      tube,
-      radialSegments,
-      tubularSegments,
-      arc,
-      name
-    }) {
-      const geometry = new TorusGeometry(radius, tube, radialSegments, tubularSegments, arc)
-
-      const material = new MeshBasicMaterial({
-        color,
-        wireframe
-      })
-      const torus = new Mesh(geometry, material)
-      torus.name = name
-      return torus
+    createGeometry () {
+      return new TorusGeometry(
+        this.radius,
+        this.tube,
+        this.radialSegments,
+        this.tubularSegments,
+        this.arc
+      )
     }
   }
 }

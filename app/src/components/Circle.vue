@@ -2,34 +2,69 @@
   <div></div>
 </template>
 <script>
-import { CircleGeometry, MeshBasicMaterial, Mesh } from 'three'
+import { CircleGeometry } from 'three'
+import mixins from '@/mixins/index.js'
 
 export default {
   props: {
-    name: String,
-    color: Number,
-    radius: Number,
-    segments: Number,
-    thetaStart: Number,
-    thetaLength: Number,
-    wireframe: Boolean
+    color: {
+      type: Number,
+      default: 0xcccccc
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    wireframe: {
+      type: Boolean,
+      default: false
+    },
+    radius: {
+      type: Number,
+      default: 3
+    },
+    segments: {
+      type: Number,
+      default: 15
+    },
+    thetaStart: {
+      type: Number,
+      default: 0
+    },
+    thetaLength: {
+      type: Number,
+      default: 2 * Math.PI
+    },
+    position: {
+      type: Object,
+      default: function () {
+        return {
+          x: 0,
+          y: 0,
+          z: 0
+        }
+      }
+    },
+    rotation: {
+      type: Object,
+      default: function () {
+        return {
+          x: 0,
+          y: 0,
+          z: 0
+        }
+      }
+    }
   },
+  mixins: [mixins],
   methods: {
-    init ({
-      name,
-      color,
-      radius,
-      segments,
-      thetaStart,
-      thetaLength,
-      wireframe
-    }) {
-      const geometry = new CircleGeometry(radius, segments, thetaStart, thetaLength)
-      const material = new MeshBasicMaterial({ color, wireframe })
-      const circle = new Mesh(geometry, material)
-
-      circle.name = name
-      return circle
+    createGeometry () {
+      return new CircleGeometry(
+        this.radius,
+        this.segments,
+        this.thetaStart,
+        this.thetaLength
+      )
     }
   }
 }
