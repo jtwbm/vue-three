@@ -2,36 +2,59 @@
   <div></div>
 </template>
 <script>
-import { DodecahedronGeometry, MeshBasicMaterial, Mesh } from 'three'
+import { DodecahedronGeometry } from 'three'
+import mixins from '@/mixins/index.js'
 
 export default {
   props: {
-    color: Number,
-    name: String,
-    wireframe: Boolean,
-    radius: Number,
-    detail: Number
+    color: {
+      type: Number,
+      default: 0xcccccc
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    wireframe: {
+      type: Boolean,
+      default: false
+    },
+    radius: {
+      type: Number,
+      default: 3
+    },
+    detail: {
+      type: Number,
+      default: 10
+    },
+    position: {
+      type: Object,
+      default: function () {
+        return {
+          x: 0,
+          y: 0,
+          z: 0
+        }
+      }
+    },
+    rotation: {
+      type: Object,
+      default: function () {
+        return {
+          x: 0,
+          y: 0,
+          z: 0
+        }
+      }
+    }
   },
+  mixins: [mixins],
   methods: {
-    init ({
-      name,
-      color,
-      wireframe,
-      radius,
-      detail
-    }) {
-      const geometry = new DodecahedronGeometry(
-        radius,
-        detail,
-        color
+    createGeometry () {
+      return new DodecahedronGeometry(
+        this.radius,
+        this.detail
       )
-      const material = new MeshBasicMaterial({
-        color,
-        wireframe
-      })
-      const dodecahedron = new Mesh(geometry, material)
-      dodecahedron.name = name
-      return dodecahedron
     }
   }
 }

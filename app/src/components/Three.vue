@@ -32,6 +32,7 @@ export default {
   },
   data () {
     return {
+      items: []
     }
   },
   computed: {
@@ -43,15 +44,17 @@ export default {
     }
   },
   methods: {
+    addGeometryToScene (item) {
+      this.items.push(item)
+      this.threeScene.add(item)
+    },
     createScene () {
-      this._scene = new THREE.Scene()
-      this._scene.background = new THREE.Color(this.scene.background)
+      this.threeScene = new THREE.Scene()
+      this.threeScene.background = new THREE.Color(this.scene.background)
     },
     createCamera () {
       this._camera = new THREE.PerspectiveCamera(this.camera.fov, this.cWidth / this.cHeight, 1, 1000)
-      this._camera.position.x = this.camera.position.x
-      this._camera.position.y = this.camera.position.y
-      this._camera.position.z = this.camera.position.z
+      this.initCameraPosition()
     },
     createRenderer () {
       this.renderer = new THREE.WebGLRenderer()
@@ -59,33 +62,38 @@ export default {
 
       this.$refs.canvas.appendChild(this.renderer.domElement)
     },
+    initCameraPosition () {
+      this._camera.position.x = this.camera.position.x
+      this._camera.position.y = this.camera.position.y
+      this._camera.position.z = this.camera.position.z
+    },
     init () {
       this.createScene()
       this.createCamera()
-
-      this.$slots.default().forEach((slot) => {
-        // *** добавить свойства по умолчанию
-        this.items[slot.props.name] = slot.type.methods.init(slot.props)
-        this._scene.add(this.items[slot.props.name])
-      })
-
       this.createRenderer()
     },
     loop () {
-      this.renderer.render(this._scene, this._camera)
+      this.renderer.render(this.threeScene, this._camera)
 
       // *** добавить callback
-      if (this.items.test) {
-        this.items.test.rotation.y -= 0.01
-        this.items.test.rotation.z += 0.01
-        this.items.test.rotation.x += 0.01
-      }
-
+      // if (this.items.test) {
+      //   this.items.test.rotation.y -= 0.01
+      //   this.items.test.rotation.z += 0.01
+      //   this.items.test.rotation.x += 0.01
+      // }
       requestAnimationFrame(this.loop)
+      this.$emit('update')
+    }
+  },
+  watch: {
+    'camera.position': {
+      deep: true,
+      handler () {
+        this.initCameraPosition()
+      }
     }
   },
   mounted () {
-    this.items = {}
     this.init()
     this.loop()
   }

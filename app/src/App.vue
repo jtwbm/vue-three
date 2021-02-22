@@ -1,20 +1,25 @@
 <template>
-  <ThreeComponent :scene="scene" :camera="camera" id="scene">
-    <Axes name="axes" :size="15" />
-    <Dodecahedron v-bind="dodecahedronConfig" />
+  <ThreeComponent
+    :scene="scene"
+    :camera="camera"
+    id="scene"
+    @update="update"
+  >
+    <!-- <Axes name="axes" :size="15" /> -->
+    <Dodecahedron v-bind="dodecahedronConfig" @init="initHandler" />
   </ThreeComponent>
 </template>
 
 <script>
 import ThreeComponent from '@/components/Three.vue'
-import Axes from '@/components/Axes.vue'
+// import Axes from '@/components/Axes.vue'
 import Dodecahedron from '@/components/Dodecahedron.vue'
 
 export default {
   name: 'App',
   components: {
     ThreeComponent,
-    Axes,
+    // Axes,
     Dodecahedron
   },
   data () {
@@ -90,13 +95,32 @@ export default {
         color: 0xffd00e,
         wireframe: true,
         radius: 2,
-        detail: 1
+        detail: 1,
+        position: {
+          x: 1,
+          y: 1,
+          z: -2
+        },
+        rotation: {
+          x: 1,
+          y: 1,
+          z: -2
+        }
       }
     }
   },
   methods: {
-    boxCallback (data) {
-      console.log(data)
+    initHandler () {
+      // console.log('initHandler')
+    },
+    update () {
+      // this.camera.position.x += 0.01
+      // this.camera.position.y += 0.01
+      // this.camera.position.z += 0.01
+
+      this.dodecahedronConfig.color += 0x000001
+      // this.dodecahedronConfig.position.y += 0.01
+      this.dodecahedronConfig.rotation.z += 0.01
     }
   }
 }
