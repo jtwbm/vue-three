@@ -1,10 +1,10 @@
 <template>
   <div ref="canvas">
-    <slot />
   </div>
 </template>
 <script>
 import * as THREE from 'three'
+import { useCreateFigure } from '@/use/createFigure.js'
 
 export default {
   props: {
@@ -28,12 +28,17 @@ export default {
           }
         }
       }
-    }
+    },
+    items: Array
   },
-  data () {
-    return {
-      items: []
-    }
+  setup (props) {
+    const figures = []
+    props.items.forEach((item) => {
+      const figure = useCreateFigure(item)
+      figure.name = item.id
+      figures.push(figure)
+    })
+    return { figures }
   },
   computed: {
     cWidth () {
@@ -41,13 +46,14 @@ export default {
     },
     cHeight () {
       return this.$refs.canvas.clientHeight
+    },
+    figureWithUpdateCallback () {
+      return this.items.filter((item) => {
+        return !!item.update
+      }).map((item) => this.figures.find((figure) => figure.name === item.id))
     }
   },
   methods: {
-    addGeometryToScene (item) {
-      this.items.push(item)
-      this.threeScene.add(item)
-    },
     createScene () {
       this.threeScene = new THREE.Scene()
       this.threeScene.background = new THREE.Color(this.scene.background)
@@ -71,11 +77,17 @@ export default {
       this.createScene()
       this.createCamera()
       this.createRenderer()
+      this.figures.forEach((figure) => {
+        this.threeScene.add(figure)
+      })
     },
     loop () {
       this.renderer.render(this.threeScene, this._camera)
       requestAnimationFrame(this.loop)
-      this.$emit('update')
+      this.figureWithUpdateCallback.forEach((figure) => {
+        const figureCallback = this.items.find((item) => item.id === figure.name).update
+        figureCallback(figure)
+      })
     }
   },
   watch: {
