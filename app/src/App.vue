@@ -44,6 +44,27 @@ export default {
       },
       items: [
         {
+          id: 'tetrahedron1',
+          type: 'tetrahedron',
+          config: {
+            color: 0xf58442,
+            wireframe: true,
+            position: {
+              x: -4,
+              y: 7,
+              z: 0
+            },
+            rotation: {
+              x: 1,
+              y: 7,
+              z: -2
+            }
+          },
+          update (figure) {
+            figure.rotation.x += 0.01
+          }
+        },
+        {
           id: 'sphere1',
           type: 'sphere',
           config: {

@@ -12,6 +12,7 @@ import PolyhedronGeometry from '@/modules/polyhedron'
 import RingGeometry from '@/modules/ring'
 import ShapeGeometry from '@/modules/shape'
 import SphereGeometry from '@/modules/sphere'
+import TetrahedronGeometry from '@/modules/tetrahedron'
 
 export default function (type, config) {
   if (type === 'box') {
@@ -55,5 +56,8 @@ export default function (type, config) {
   }
   if (type === 'sphere') {
     return new SphereGeometry(config)
+  }
+  if (type === 'tetrahedron') {
+    return new TetrahedronGeometry(config)
   }
 }
