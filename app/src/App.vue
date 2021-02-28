@@ -44,6 +44,28 @@ export default {
       },
       items: [
         {
+          id: 'sphere1',
+          type: 'sphere',
+          config: {
+            color: 0xf54242,
+            wireframe: true,
+            radius: 5,
+            position: {
+              x: 0,
+              y: 5,
+              z: -15
+            },
+            rotation: {
+              x: 1,
+              y: 7,
+              z: -2
+            }
+          },
+          update (figure) {
+            figure.rotation.x += 0.01
+          }
+        },
+        {
           id: 'shape1',
           type: 'shape',
           config: {
@@ -63,7 +85,6 @@ export default {
           },
           update (figure) {
             figure.rotation.x += 0.01
-            figure.rotation.y -= 0.01
             figure.rotation.z -= 0.01
           }
         },

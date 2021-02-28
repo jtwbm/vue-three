@@ -11,6 +11,7 @@ import PlaneGeometry from '@/modules/plane'
 import PolyhedronGeometry from '@/modules/polyhedron'
 import RingGeometry from '@/modules/ring'
 import ShapeGeometry from '@/modules/shape'
+import SphereGeometry from '@/modules/sphere'
 
 export default function (type, config) {
   if (type === 'box') {
@@ -51,5 +52,8 @@ export default function (type, config) {
   }
   if (type === 'shape') {
     return new ShapeGeometry(config)
+  }
+  if (type === 'sphere') {
+    return new SphereGeometry(config)
   }
 }
