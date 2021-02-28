@@ -4,6 +4,7 @@ import TorusGeometry from '@/modules/torus'
 import ConeGeometry from '@/modules/cone'
 import CylinderGeometry from '@/modules/cylinder'
 import DodecahedronGeometry from '@/modules/dodecahedron'
+import IcosahedronGeometry from '@/modules/icosahedron'
 
 export default function (type, config) {
   if (type === 'box') {
@@ -23,5 +24,8 @@ export default function (type, config) {
   }
   if (type === 'dodecahedron') {
     return new DodecahedronGeometry(config)
+  }
+  if (type === 'icosahedron') {
+    return new IcosahedronGeometry(config)
   }
 }

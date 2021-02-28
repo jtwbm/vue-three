@@ -1,6 +1,5 @@
 <template>
   <div ref="canvas">
-    {{ size }}
     <slot></slot>
   </div>
 </template>
@@ -46,7 +45,6 @@ export default {
     if (props.axes) {
       const { axes } = useAxes(props.axes)
       figures.push(axes)
-      console.log(axes)
     }
 
     return { figures }

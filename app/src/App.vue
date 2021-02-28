@@ -2,8 +2,9 @@
   <ThreeComponent
     :scene="scene"
     :camera="camera"
+    id="scene"
     :items="items"
-    :axes="15"
+    :axes="10"
   >
   </ThreeComponent>
 </template>
@@ -30,6 +31,30 @@ export default {
         }
       },
       items: [
+        {
+          id: 'icosahedron1',
+          type: 'icosahedron',
+          config: {
+            color: 0xff6234,
+            wireframe: true,
+            radius: 1,
+            detaul: 1,
+            position: {
+              x: -5,
+              y: 5,
+              z: -2
+            },
+            rotation: {
+              x: 1,
+              y: 1,
+              z: -2
+            }
+          },
+          update (figure) {
+            figure.rotation.y -= 0.01
+            figure.rotation.z += 0.01
+          }
+        },
         {
           id: 'box1',
           type: 'box',
