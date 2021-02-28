@@ -7,6 +7,7 @@ import DodecahedronGeometry from '@/modules/dodecahedron'
 import IcosahedronGeometry from '@/modules/icosahedron'
 import OctahedronGeometry from '@/modules/octahedron'
 import ParametricGeometry from '@/modules/parametric'
+import PlaneGeometry from '@/modules/plane'
 
 export default function (type, config) {
   if (type === 'box') {
@@ -35,5 +36,8 @@ export default function (type, config) {
   }
   if (type === 'parametric') {
     return new ParametricGeometry(config)
+  }
+  if (type === 'plane') {
+    return new PlaneGeometry(config)
   }
 }

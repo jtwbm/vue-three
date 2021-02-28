@@ -32,6 +32,32 @@ export default {
       },
       items: [
         {
+          id: 'plane1',
+          type: 'plane',
+          config: {
+            color: 0xffffff,
+            wireframe: true,
+            width: 2,
+            height: 3,
+            widthSegments: 10,
+            heightSegments: 10,
+            position: {
+              x: 0,
+              y: 5,
+              z: 1
+            },
+            rotation: {
+              x: 1,
+              y: 7,
+              z: -2
+            }
+          },
+          update (figure) {
+            figure.rotation.y += 0.01
+            figure.rotation.x -= 0.01
+          }
+        },
+        {
           id: 'parametric1',
           type: 'parametric',
           config: {
