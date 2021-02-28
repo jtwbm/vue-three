@@ -1,1 +1,1 @@
-# vue-three
+# VUE 3 + THREE.JS

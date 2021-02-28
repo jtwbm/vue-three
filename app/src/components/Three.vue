@@ -1,10 +1,13 @@
 <template>
   <div ref="canvas">
+    {{ size }}
+    <slot></slot>
   </div>
 </template>
 <script>
 import * as THREE from 'three'
 import { useCreateFigure } from '@/use/createFigure.js'
+import { useAxes } from '@/use/axes.js'
 
 export default {
   props: {
@@ -29,7 +32,8 @@ export default {
         }
       }
     },
-    items: Array
+    items: Array,
+    axes: Number
   },
   setup (props) {
     const figures = []
@@ -38,6 +42,13 @@ export default {
       figure.name = item.id
       figures.push(figure)
     })
+
+    if (props.axes) {
+      const { axes } = useAxes(props.axes)
+      figures.push(axes)
+      console.log(axes)
+    }
+
     return { figures }
   },
   computed: {

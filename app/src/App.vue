@@ -2,8 +2,8 @@
   <ThreeComponent
     :scene="scene"
     :camera="camera"
-    id="scene"
     :items="items"
+    :axes="15"
   >
   </ThreeComponent>
 </template>
