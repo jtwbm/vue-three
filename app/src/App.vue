@@ -32,6 +32,68 @@ export default {
       },
       items: [
         {
+          id: 'parametric1',
+          type: 'parametric',
+          config: {
+            color: 0x70623f,
+            wireframe: true,
+            func: function (u, v, target) {
+              u *= Math.PI
+              v *= 2 * Math.PI
+
+              u = u * 2
+              var x, y, z
+              if (u < Math.PI) {
+                x = 3 * Math.cos(u) * (1 + Math.sin(u)) + (2 * (1 - Math.cos(u) / 2)) * Math.cos(u) * Math.cos(v)
+                z = -8 * Math.sin(u) - 2 * (1 - Math.cos(u) / 2) * Math.sin(u) * Math.cos(v)
+              } else {
+                x = 3 * Math.cos(u) * (1 + Math.sin(u)) + (2 * (1 - Math.cos(u) / 2)) * Math.cos(v + Math.PI)
+                z = -8 * Math.sin(u)
+              }
+
+              y = -2 * (1 - Math.cos(u) / 2) * Math.sin(v)
+
+              target.set(x, y, z)
+            },
+            slices: 10,
+            stacks: 10,
+            position: {
+              x: 0,
+              y: 5,
+              z: -2
+            },
+            rotation: {
+              x: 1,
+              y: 1,
+              z: -2
+            }
+          },
+          update (figure) {
+            figure.rotation.y -= 0.01
+            figure.rotation.z += 0.01
+          }
+        },
+        {
+          id: 'octahedron1',
+          type: 'octahedron',
+          config: {
+            color: 0x70623f,
+            wireframe: true,
+            radius: 1,
+            detaul: 1,
+            position: {
+              x: 0,
+              y: 5,
+              z: -2
+            },
+            rotation: {
+              x: 1,
+              y: 1,
+              z: -2
+            }
+          }
+        },
+        {
           id: 'icosahedron1',
           type: 'icosahedron',
           config: {
