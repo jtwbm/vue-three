@@ -44,6 +44,27 @@ export default {
       },
       items: [
         {
+          id: 'torusKnot1',
+          type: 'torusknot',
+          config: {
+            color: 0xf5b342,
+            wireframe: true,
+            position: {
+              x: 6,
+              y: -4,
+              z: 0
+            },
+            rotation: {
+              x: 1,
+              y: 7,
+              z: -2
+            }
+          },
+          update (figure) {
+            figure.rotation.x += 0.01
+          }
+        },
+        {
           id: 'tetrahedron1',
           type: 'tetrahedron',
           config: {

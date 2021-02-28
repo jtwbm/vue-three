@@ -13,6 +13,7 @@ import RingGeometry from '@/modules/ring'
 import ShapeGeometry from '@/modules/shape'
 import SphereGeometry from '@/modules/sphere'
 import TetrahedronGeometry from '@/modules/tetrahedron'
+import TorusKnotGeometry from '@/modules/torusKnot'
 
 export default function (type, config) {
   if (type === 'box') {
@@ -59,5 +60,8 @@ export default function (type, config) {
   }
   if (type === 'tetrahedron') {
     return new TetrahedronGeometry(config)
+  }
+  if (type === 'torusknot') {
+    return new TorusKnotGeometry(config)
   }
 }
