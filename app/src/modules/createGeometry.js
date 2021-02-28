@@ -8,6 +8,7 @@ import IcosahedronGeometry from '@/modules/icosahedron'
 import OctahedronGeometry from '@/modules/octahedron'
 import ParametricGeometry from '@/modules/parametric'
 import PlaneGeometry from '@/modules/plane'
+import PolyhedronGeometry from '@/modules/polyhedron'
 
 export default function (type, config) {
   if (type === 'box') {
@@ -39,5 +40,8 @@ export default function (type, config) {
   }
   if (type === 'plane') {
     return new PlaneGeometry(config)
+  }
+  if (type === 'polyhedron') {
+    return new PolyhedronGeometry(config)
   }
 }

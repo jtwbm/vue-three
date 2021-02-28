@@ -32,6 +32,32 @@ export default {
       },
       items: [
         {
+          id: 'polyhedron1',
+          type: 'polyhedron',
+          config: {
+            color: 0xeb34de,
+            wireframe: true,
+            vertices: [-1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, -1, 1, 1, 1, 1, -1, 1, 1],
+            indices: [2, 1, 0, 0, 3, 2, 0, 4, 7, 7, 3, 0, 0, 1, 5, 5, 4, 0, 1, 2, 6, 6, 5, 1, 2, 3, 7, 7, 6, 2, 4, 5, 6, 6, 7, 4],
+            radius: 1,
+            detail: 1,
+            position: {
+              x: 3,
+              y: 3,
+              z: 1
+            },
+            rotation: {
+              x: 1,
+              y: 7,
+              z: -2
+            }
+          },
+          update (figure) {
+            figure.rotation.y += 0.01
+            figure.rotation.x -= 0.01
+          }
+        },
+        {
           id: 'plane1',
           type: 'plane',
           config: {
