@@ -10,6 +10,7 @@ import ParametricGeometry from '@/modules/parametric'
 import PlaneGeometry from '@/modules/plane'
 import PolyhedronGeometry from '@/modules/polyhedron'
 import RingGeometry from '@/modules/ring'
+import ShapeGeometry from '@/modules/shape'
 
 export default function (type, config) {
   if (type === 'box') {
@@ -47,5 +48,8 @@ export default function (type, config) {
   }
   if (type === 'ring') {
     return new RingGeometry(config)
+  }
+  if (type === 'shape') {
+    return new ShapeGeometry(config)
   }
 }

@@ -10,7 +10,19 @@
 </template>
 
 <script>
+import * as THREE from 'three'
 import ThreeComponent from '@/components/Three.vue'
+
+const x = 0
+const y = 0
+const heartShape = new THREE.Shape()
+heartShape.moveTo(x + 5, y + 5)
+heartShape.bezierCurveTo(x + 5, y + 5, x + 4, y, x, y)
+heartShape.bezierCurveTo(x - 6, y, x - 6, y + 7, x - 6, y + 7)
+heartShape.bezierCurveTo(x - 6, y + 11, x - 3, y + 15.4, x + 5, y + 19)
+heartShape.bezierCurveTo(x + 12, y + 15.4, x + 16, y + 11, x + 16, y + 7)
+heartShape.bezierCurveTo(x + 16, y + 7, x + 16, y, x + 10, y)
+heartShape.bezierCurveTo(x + 7, y, x + 5, y + 5, x + 5, y + 5)
 
 export default {
   name: 'App',
@@ -32,11 +44,39 @@ export default {
       },
       items: [
         {
+          id: 'shape1',
+          type: 'shape',
+          config: {
+            color: 0xff9ed5,
+            wireframe: true,
+            shapes: heartShape,
+            position: {
+              x: 5,
+              y: 5,
+              z: -15
+            },
+            rotation: {
+              x: 1,
+              y: 7,
+              z: -2
+            }
+          },
+          update (figure) {
+            figure.rotation.x += 0.01
+            figure.rotation.y -= 0.01
+            figure.rotation.z -= 0.01
+          }
+        },
+        {
           id: 'ring1',
           type: 'ring',
           config: {
             color: 0x6ffc03,
             wireframe: true,
+            innerRadius: 1,
+            outerRadius: 5,
+            thetaSegments: 6,
+            phiSegments: 9,
             position: {
               x: 5,
               y: 5,
