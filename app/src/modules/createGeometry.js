@@ -14,6 +14,7 @@ import ShapeGeometry from '@/modules/shape'
 import SphereGeometry from '@/modules/sphere'
 import TetrahedronGeometry from '@/modules/tetrahedron'
 import TorusKnotGeometry from '@/modules/torusKnot'
+import TubeGeometry from '@/modules/tube'
 
 export default function (type, config) {
   if (type === 'box') {
@@ -63,5 +64,8 @@ export default function (type, config) {
   }
   if (type === 'torusknot') {
     return new TorusKnotGeometry(config)
+  }
+  if (type === 'tube') {
+    return new TubeGeometry(config)
   }
 }

@@ -24,6 +24,21 @@ heartShape.bezierCurveTo(x + 12, y + 15.4, x + 16, y + 11, x + 16, y + 7)
 heartShape.bezierCurveTo(x + 16, y + 7, x + 16, y, x + 10, y)
 heartShape.bezierCurveTo(x + 7, y, x + 5, y + 5, x + 5, y + 5)
 
+class CustomSinCurve extends THREE.Curve {
+  constructor (scale = 1) {
+    super()
+    this.scale = scale
+  }
+
+  getPoint (t, optionalTarget = new THREE.Vector3()) {
+    const tx = t * 3 - 1.5
+    const ty = Math.sin(2 * Math.PI * t)
+    const tz = 0
+
+    return optionalTarget.set(tx, ty, tz).multiplyScalar(this.scale)
+  }
+}
+
 export default {
   name: 'App',
   components: {
@@ -43,6 +58,28 @@ export default {
         }
       },
       items: [
+        {
+          id: 'tube1',
+          type: 'tube',
+          config: {
+            color: 0xc0a7db,
+            wireframe: true,
+            path: new CustomSinCurve(10),
+            position: {
+              x: 6,
+              y: -4,
+              z: -10
+            },
+            rotation: {
+              x: 1,
+              y: 7,
+              z: -2
+            }
+          },
+          update (figure) {
+            figure.rotation.x += 0.01
+          }
+        },
         {
           id: 'torusKnot1',
           type: 'torusknot',
