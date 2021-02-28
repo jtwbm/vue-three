@@ -9,6 +9,7 @@ import OctahedronGeometry from '@/modules/octahedron'
 import ParametricGeometry from '@/modules/parametric'
 import PlaneGeometry from '@/modules/plane'
 import PolyhedronGeometry from '@/modules/polyhedron'
+import RingGeometry from '@/modules/ring'
 
 export default function (type, config) {
   if (type === 'box') {
@@ -43,5 +44,8 @@ export default function (type, config) {
   }
   if (type === 'polyhedron') {
     return new PolyhedronGeometry(config)
+  }
+  if (type === 'ring') {
+    return new RingGeometry(config)
   }
 }

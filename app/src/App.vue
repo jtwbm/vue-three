@@ -32,6 +32,29 @@ export default {
       },
       items: [
         {
+          id: 'ring1',
+          type: 'ring',
+          config: {
+            color: 0x6ffc03,
+            wireframe: true,
+            position: {
+              x: 5,
+              y: 5,
+              z: -1
+            },
+            rotation: {
+              x: 1,
+              y: 7,
+              z: -2
+            }
+          },
+          update (figure) {
+            figure.rotation.x += 0.01
+            figure.rotation.y -= 0.01
+            figure.rotation.z -= 0.01
+          }
+        },
+        {
           id: 'polyhedron1',
           type: 'polyhedron',
           config: {
