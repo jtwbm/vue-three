@@ -7,7 +7,6 @@ export default function ({
   radialSegments = 8,
   closed = false
 }) {
-  console.log(path)
   return new TubeGeometry(
     path,
     tubularSegments,
