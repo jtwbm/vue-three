@@ -5,7 +5,6 @@
 </template>
 <script>
 import * as THREE from 'three'
-// import { useCreateFigure } from '@/use/createFigure.js'
 import { useAxes } from '@/use/axes.js'
 
 export default {
@@ -37,7 +36,6 @@ export default {
   setup (props) {
     const figures = []
     props.items.forEach((item) => {
-      console.log(item.figure)
       figures.push(item)
     })
 
@@ -92,10 +90,9 @@ export default {
     loop () {
       this.renderer.render(this.threeScene, this._camera)
       requestAnimationFrame(this.loop)
-      // this.figureWithUpdateCallback.forEach((figure) => {
-      //   const figureCallback = this.items.find((item) => item.id === figure.name).update
-      //   figureCallback(figure)
-      // })
+      this.items.forEach((figure) => {
+        figure.update()
+      })
     }
   },
   watch: {
